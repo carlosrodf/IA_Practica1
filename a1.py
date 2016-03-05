@@ -35,6 +35,7 @@ class MasterCrack(spade.Agent.Agent):
 				palabra=r.recognize_google(audio, language = "es-GT").lower()
 				print("Google Speech Recognition thinks you said " + palabra)				
 				if "comencemos" in palabra:
+					os.system("play ./Respuesta_Inicio.wav")
 					print "saliendo de stand by, empezando a contar tiempo..."
 					self.msg = spade.ACLMessage.ACLMessage()  # Instantiate the message					
 					self.msg.addReceiver(self.receiver)            # Add the message receiver
@@ -68,7 +69,7 @@ class MasterCrack(spade.Agent.Agent):
 							time.sleep(1)
 							i.stop()
 							d.stop()
-							
+							time.sleep(1)
 							i = GPIO.PWM(I2,10)
 							d = GPIO.PWM(D2,10)
 							i.start(80)
